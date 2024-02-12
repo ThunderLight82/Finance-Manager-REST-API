@@ -29,7 +29,7 @@ internal class GetDailyReportQueryHandler : IRequestHandler<GetDailyReportQuery,
             {
                 _logger.LogError("Error in  GetDailyReportQueryHandler." +
                                  "Financial operation with this date not found.");
-                throw new Exception("Financial operation with this date not found.");
+                throw new ArgumentNullException($"Financial operation with this date '{request.InputDate}' not found.");
             }
             
             decimal totalIncome = financialOperations
