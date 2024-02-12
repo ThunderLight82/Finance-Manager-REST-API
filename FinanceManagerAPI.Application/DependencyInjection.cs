@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using FinanceManagerAPI.Application.Interfaces;
+using FinanceManagerAPI.Application.ReportBehavior.DailyReport;
+using FinanceManagerAPI.Application.ReportBehavior.DatePeriodReport;
 using FinanceManagerAPI.Domain.Models;
 using FluentValidation;
 using MediatR;
@@ -18,6 +20,8 @@ public static class DependencyInjection
         
         services.AddScoped<IBaseBehavior<FinancialOperation>, FinancialOperationBehavior.FinancialOperationBehavior>();
         services.AddScoped<IBaseBehavior<OperationType>, OperationTypeBehavior.OperationTypeBehavior>();
-        //services.AddScoped<ReportService.IReportService>();
+        
+        services.AddTransient<IRequestHandler<GetDailyReportQuery, DailyReportResponse>, GetDailyReportQueryHandler>();
+        services.AddTransient<IRequestHandler<GetDatePeriodReportQuery,DatePeriodReportResponse>, GetDatePeriodReportQueryHandler>();
     }
 }
