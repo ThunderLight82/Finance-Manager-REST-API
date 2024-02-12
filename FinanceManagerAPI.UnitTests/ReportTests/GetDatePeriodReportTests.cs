@@ -64,18 +64,18 @@ public class GetDatePeriodReportTests
         // Arrange
         var financialOperations = new List<FinancialOperation>
         {
-            new (id: 11, amount: 50M, dateTime: new DateTime(2023, 2, 1), operationTypeId: 11),
-            new (id: 12, amount: 50M, dateTime:  new DateTime(2023, 2, 9), operationTypeId: 12),
-            new (id: 13, amount: 300.99M, new DateTime(2023, 2, 17), operationTypeId: 13),
-            new (id: 14, amount: 1000M, dateTime: new DateTime(2023, 2, 2), operationTypeId: 14)
+            new() {Id = 11, Amount = 50M, DateTime = new DateTime(2023, 2, 1), OperationTypeId = 11},
+            new() {Id = 12, Amount = 50M, DateTime = new DateTime(2023, 2, 9), OperationTypeId = 12},
+            new() {Id = 13, Amount = 300.99M, DateTime = new DateTime(2023, 2, 17), OperationTypeId = 13},
+            new() {Id = 14, Amount = 1000M, DateTime = new DateTime(2023, 2, 2), OperationTypeId = 14}
         };
 
         var operationTypes = new List<OperationType>
         {
-            new (id: 11, name: "Income 1", isIncomeOperation: true),
-            new (id: 12, name: "Income 2", isIncomeOperation: true),
-            new (id: 13, name: "Expense 1", isIncomeOperation: false),
-            new (id: 14, name: "Expense 2", isIncomeOperation: false)
+            new() {Id = 11, Name = "Income 1", IsIncomeOperation = true},
+            new() {Id = 12, Name = "Income 2", IsIncomeOperation = true},
+            new() {Id = 13, Name = "Expense 1", IsIncomeOperation = false},
+            new() {Id = 14, Name = "Expense 2", IsIncomeOperation = false}
         };
 
         _dbContext.FinancialOperations.AddRange(financialOperations);

@@ -64,18 +64,18 @@ public class GetDailyReportTests
         // Arrange
         var financialOperations = new List<FinancialOperation>
         {
-            new (id: 6, amount: 20M, dateTime: DateTime.UtcNow.Date, operationTypeId: 6),
-            new (id: 7, amount: 20M, dateTime: DateTime.UtcNow.Date, operationTypeId: 7),
-            new (id: 8, amount: 70.99M, dateTime: DateTime.UtcNow.Date, operationTypeId: 8),
-            new (id: 9, amount: 100M, dateTime: DateTime.UtcNow.Date, operationTypeId: 9)
+            new() {Id = 6, Amount = 20M, DateTime = DateTime.UtcNow.Date, OperationTypeId = 6},
+            new() {Id = 7, Amount = 20M, DateTime = DateTime.UtcNow.Date, OperationTypeId = 7},
+            new() {Id = 8, Amount = 70.99M, DateTime = DateTime.UtcNow.Date, OperationTypeId = 8},
+            new() {Id = 9, Amount = 100M, DateTime = DateTime.UtcNow.Date, OperationTypeId = 9}
         };
 
         var operationTypes = new List<OperationType>
         {
-            new (id: 6, name: "Income 1", isIncomeOperation: true),
-            new (id: 7, name: "Income 2", isIncomeOperation: true),
-            new (id: 8, name: "Expense 1", isIncomeOperation: false),
-            new (id: 9, name: "Expense 2", isIncomeOperation: false)
+            new() {Id = 6, Name = "Income 1", IsIncomeOperation = true},
+            new() {Id = 7, Name = "Income 2", IsIncomeOperation = true},
+            new() {Id = 8, Name = "Expense 1", IsIncomeOperation = false},
+            new() {Id = 9, Name = "Expense 2", IsIncomeOperation = false}
         };
 
         _dbContext.FinancialOperations.AddRange(financialOperations);
