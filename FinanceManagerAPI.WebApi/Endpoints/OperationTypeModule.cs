@@ -16,7 +16,7 @@ public sealed class OperationTypeModule : ICarterModule
         var mapGroup = endpoint.MapGroup("api/operation-type");
         
         mapGroup.MapPost("", CreateOperationType);
-        mapGroup.MapGet("{id:int}", GetOperationType);
+        mapGroup.MapGet("{id:int}", GetOperationType).CacheOutput();
         mapGroup.MapPut("{id:int}", UpdateOperationType);
         mapGroup.MapDelete("{id:int}", DeleteOperationType);
     }

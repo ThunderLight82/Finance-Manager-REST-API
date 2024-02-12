@@ -16,7 +16,7 @@ public class FinancialOperationModule : ICarterModule
         var mapGroup = endpoint.MapGroup("api/financial-operation");
         
         mapGroup.MapPost("", CreateFinancialOperation);
-        mapGroup.MapGet("{id:int}", GetFinancialOperation);
+        mapGroup.MapGet("{id:int}", GetFinancialOperation).CacheOutput();
         mapGroup.MapPut("{id:int}", UpdateFinancialOperation);
         mapGroup.MapDelete("{id:int}", DeleteFinancialOperation);
     }
@@ -60,6 +60,8 @@ public class FinancialOperationModule : ICarterModule
         {
             return TypedResults.NotFound($"Error 404: {ex.Message}");
         }
+        
+        
     }
     
     // [Put/Update]
