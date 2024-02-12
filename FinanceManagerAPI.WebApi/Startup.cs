@@ -17,7 +17,9 @@ public class Startup
     }
     
     public void ConfigureServices(IServiceCollection services)
-    {
+    { 
+        services.AddOutputCache();
+        
         services.AddDbContextPool<FinanceAPIDbContext>(options => options
             .UseSqlServer(Configuration.GetConnectionString("SQLServer")));
         
