@@ -24,11 +24,12 @@ public class GetDailyReportTests
     [Fact]
     public async Task HandleGetDailyReport_OneOperation_ValidRequest_ReturnsDailyReportResponseAndAssertExistingInDB()
     {
+        // Arrange
         var financialOperation = new FinancialOperation
         {
             Id = 5,
             Amount = 50.50M,
-            DateTime = new DateTime(2024, 1, 10),
+            DateTime = new DateTime(2022, 1, 10),
             OperationTypeId = 5
         };
         
@@ -43,12 +44,14 @@ public class GetDailyReportTests
         _dbContext.OperationsTypes.Add(operationType);
         await _dbContext.SaveChangesAsync();
 
-        var query = new GetDailyReportQuery(new DateTime(2024, 1, 10));
+        var query = new GetDailyReportQuery(new DateTime(2022, 1, 10));
         
         var handler = new GetDailyReportQueryHandler(_dbContext, _mockLoggerForQuery.Object);
         
+        // Act
         var result = await handler.Handle(query, default);
 
+        // Assert
         result.Should().NotBeNull();
         result.TotalIncome.Should().Be(50.50M);
         result.TotalExpenses.Should().Be(0M);
@@ -58,7 +61,7 @@ public class GetDailyReportTests
     [Fact]
     public async Task HandleGetDailyReport_MultipleOperations_ValidRequest_ReturnsDailyReportResponseAndAssertExistingInDB()
     {
-
+        // Arrange
         var financialOperations = new List<FinancialOperation>
         {
             new (id: 6, amount: 20M, dateTime: DateTime.UtcNow.Date, operationTypeId: 6),
@@ -83,8 +86,10 @@ public class GetDailyReportTests
         
         var handler = new GetDailyReportQueryHandler(_dbContext, _mockLoggerForQuery.Object);
         
+        // Act
         var result = await handler.Handle(query, default);
 
+        // Assert
         result.Should().NotBeNull();
         result.TotalIncome.Should().Be(40M);
         result.TotalExpenses.Should().Be(170.99M);
