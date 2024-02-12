@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FinanceManagerAPI.Application.ReportBehavior.DatePeriodReport;
 
-internal class GetDatePeriodReportQueryHandler : IRequestHandler<GetDatePeriodReportQuery, DatePeriodResponse>
+internal class GetDatePeriodReportQueryHandler : IRequestHandler<GetDatePeriodReportQuery, DatePeriodReportResponse>
 {
     private readonly FinanceAPIDbContext _dbContext;
     private readonly ILogger<GetDatePeriodReportQueryHandler> _logger;
@@ -16,7 +16,7 @@ internal class GetDatePeriodReportQueryHandler : IRequestHandler<GetDatePeriodRe
         _logger = logger;
     }
 
-    public async Task<DatePeriodResponse> Handle(GetDatePeriodReportQuery request, CancellationToken cancellationToken)
+    public async Task<DatePeriodReportResponse> Handle(GetDatePeriodReportQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -25,11 +25,12 @@ internal class GetDatePeriodReportQueryHandler : IRequestHandler<GetDatePeriodRe
                 .Include(fo => fo.OperationType)
                 .ToListAsync(cancellationToken);
             
-            if (financialOperations == null)
+            if (financialOperations.Count == 0)
             {
                 _logger.LogError("Error in  GetDatePeriodReportQueryHandler." +
                                  "Financial operations with this date not found.");
-                throw new Exception("Financial operations with this date not found.");
+                throw new InvalidOperationException(
+                    $"Financial operations within this dates from '{request.StartInputDate}' to '{request.EndInputDate}' not found.");
             }
             
             decimal totalIncome = financialOperations
@@ -40,7 +41,7 @@ internal class GetDatePeriodReportQueryHandler : IRequestHandler<GetDatePeriodRe
                 .Where(fo => !fo.OperationType!.IsIncomeOperation)
                 .Sum(fo => fo.Amount);
             
-            return new DatePeriodResponse(totalIncome, totalExpenses, financialOperations);
+            return new DatePeriodReportResponse(totalIncome, totalExpenses, financialOperations);
         }
         catch (Exception ex)
         {
