@@ -12,6 +12,7 @@ using Xunit;
 
 namespace FinanceManagerAPI.UnitTests.FinancialOperationTests.Handlers;
 
+[Collection("FinancialOperationHandlersTests")]
 public class UpdateFinancialOperationCommandHandlerTests
 {
     private readonly IBaseBehavior<FinancialOperation> _financialOperation;
@@ -24,7 +25,6 @@ public class UpdateFinancialOperationCommandHandlerTests
         
         _financialOperation = new TestFinancialOperationBehavior(_dbContext);
         _mockLoggerForHandler = new Mock<ILogger<UpdateFinancialOperationCommandHandler>>(); 
-        _dbContext.FinancialOperations.RemoveRange(_dbContext.FinancialOperations);
     }
     
     private class TestFinancialOperationBehavior : BaseBehavior<FinancialOperation>
@@ -41,7 +41,7 @@ public class UpdateFinancialOperationCommandHandlerTests
             Id = 4,
             Amount = 0M,
             DateTime = new DateTime(2007, 12, 21),
-            OperationTypeId = 1
+            OperationTypeId = 4
         };
         _dbContext.FinancialOperations.Add(existingFinancialOperation);
         await _dbContext.SaveChangesAsync();
@@ -51,7 +51,7 @@ public class UpdateFinancialOperationCommandHandlerTests
             Id = existingFinancialOperation.Id,
             DateTime = new DateTime(2024,1,30),
             Amount = 50M,
-            OperationTypeDtoId = 2
+            OperationTypeDtoId = 4
         };
         
         var command = new UpdateFinancialOperationCommand(updatedFinancialOperationDto);
@@ -70,7 +70,7 @@ public class UpdateFinancialOperationCommandHandlerTests
         updatedOperation.Should().NotBeNull();
         updatedOperation!.Amount.Should().Be(50M);
         updatedOperation.DateTime.Should().BeCloseTo(new DateTime(2024, 1, 30), precision: TimeSpan.FromSeconds(5));
-        updatedOperation.OperationTypeId.Should().Be(2);
+        updatedOperation.OperationTypeId.Should().Be(4);
     }
     
     [Fact]

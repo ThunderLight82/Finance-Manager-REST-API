@@ -8,6 +8,7 @@ using Xunit;
 
 namespace FinanceManagerAPI.UnitTests.FinancialOperationTests.Handlers;
 
+[Collection("FinancialOperationHandlersTests")]
 public class GetFinancialOperationQueryTests
 {
     private readonly Mock<ILogger<GetFinancialOperationQueryHandler>> _mockLoggerForQuery;
@@ -21,7 +22,7 @@ public class GetFinancialOperationQueryTests
     }
 
     [Fact]
-    public async Task HandleGetFinancialOperation_ValidRequest_ReturnsFinancialOperationDtoAssertExistingInDB()
+    public async Task HandleGetFinancialOperation_ValidRequest_ReturnsFinancialOperationDtoAndAssertExistingInDB()
     {
         // Arrange
         _dbContext.FinancialOperations.Add(new FinancialOperation
@@ -29,7 +30,7 @@ public class GetFinancialOperationQueryTests
             Id = 3,
             Amount = 234.95M,
             DateTime = DateTime.UtcNow.Date,
-            OperationTypeId = 2
+            OperationTypeId = 3
         });
         await _dbContext.SaveChangesAsync();
         
@@ -51,7 +52,7 @@ public class GetFinancialOperationQueryTests
         financialOperationFromDb.Should().NotBeNull();
         financialOperationFromDb!.Amount.Should().Be(234.95M);
         financialOperationFromDb.DateTime.Date.Should().Be(DateTime.UtcNow.Date);
-        financialOperationFromDb.OperationTypeId.Should().Be(2);
+        financialOperationFromDb.OperationTypeId.Should().Be(3);
     }
     
     [Fact]

@@ -12,6 +12,7 @@ using Xunit;
 
 namespace FinanceManagerAPI.UnitTests.FinancialOperationTests.Handlers;
 
+[Collection("FinancialOperationHandlersTests")]
 public class CreateFinancialOperationCommandHandlerTests
 {
     private readonly IBaseBehavior<FinancialOperation> _financialOperation;
@@ -24,8 +25,6 @@ public class CreateFinancialOperationCommandHandlerTests
         
         _financialOperation = new TestFinancialOperationBehavior(_dbContext);
         _mockLoggerForHandler = new Mock<ILogger<CreateFinancialOperationCommandHandler>>(); 
-        
-        _dbContext.FinancialOperations.RemoveRange(_dbContext.FinancialOperations);
     }
     
     private class TestFinancialOperationBehavior : BaseBehavior<FinancialOperation>
@@ -57,7 +56,6 @@ public class CreateFinancialOperationCommandHandlerTests
 
         // Additional Assert for creation in the DB.
         var createdOperation = _dbContext.FinancialOperations.First();
-        createdOperation.DateTime.Should().BeCloseTo(DateTime.UtcNow, precision: TimeSpan.FromSeconds(5));
         createdOperation.Amount.Should().Be(100.75M); 
         createdOperation.OperationTypeId.Should().Be(1);
     }

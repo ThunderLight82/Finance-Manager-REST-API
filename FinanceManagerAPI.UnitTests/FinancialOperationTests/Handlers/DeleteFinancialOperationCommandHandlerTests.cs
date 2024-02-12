@@ -12,6 +12,7 @@ using Xunit;
 
 namespace FinanceManagerAPI.UnitTests.FinancialOperationTests.Handlers;
 
+[Collection("FinancialOperationHandlersTests")]
 public class DeleteFinancialOperationCommandHandlerTests
 {
     private readonly IBaseBehavior<FinancialOperation> _financialOperation;
