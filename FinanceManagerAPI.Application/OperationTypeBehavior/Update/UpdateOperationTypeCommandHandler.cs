@@ -26,7 +26,7 @@ internal class UpdateOperationTypeCommandHandler : IRequestHandler<UpdateOperati
         {
             _logger.LogError($"Error in OperationTypeBehavior - Update." +
                              $"Operation type with ID {operationTypeDto.Id} not found.");
-            throw new Exception($"Operation Type with ID {operationTypeDto.Id} not found.");
+            throw new ArgumentNullException($"Operation Type with ID {operationTypeDto.Id} not found.");
         }
 
         existingOperationType.Name = operationTypeDto.Name;

@@ -26,7 +26,7 @@ internal class DeleteOperationTypeCommandHandler : IRequestHandler<DeleteOperati
         {
             _logger.LogError($"Error in OperationTypeBehavior - Delete." +
                              $"Operation type with ID {operationTypeDto.Id} not found.");
-            throw new Exception($"Operation Type with ID {operationTypeDto.Id} not found.");
+            throw new ArgumentNullException($"Operation Type with ID {operationTypeDto.Id} not found.");
         }
         
         await _operationTypeBehavior.Delete(getOperation);

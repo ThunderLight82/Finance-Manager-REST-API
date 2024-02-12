@@ -29,7 +29,7 @@ internal class GetOperationTypeQueryHandler : IRequestHandler<GetOperationTypeQu
         {
             _logger.LogError($"Error in OperationTypeBehavior - Get." +
                              $"Operation type with ID {request.OperationTypeId} not found.");
-            throw new Exception($"Operation type with ID {request.OperationTypeId} not found.");
+            throw new ArgumentNullException($"Operation type with ID {request.OperationTypeId} not found.");
         }
 
         return new OperationTypeDto
