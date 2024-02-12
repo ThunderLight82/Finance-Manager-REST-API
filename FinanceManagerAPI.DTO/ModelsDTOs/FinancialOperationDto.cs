@@ -7,4 +7,6 @@ public class FinancialOperationDto: BaseModelDto
     public decimal Amount { get; init; }
     
     public int OperationTypeDtoId { get; init; }
+    
+    public virtual OperationTypeDto? OperationTypeDto { get; init; }
 }
