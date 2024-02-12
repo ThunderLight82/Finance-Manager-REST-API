@@ -10,6 +10,7 @@ using Xunit;
 
 namespace FinanceManagerAPI.UnitTests.FinancialOperationTests.Endpoints;
 
+[Collection("FinancialOperationEndpointsTests")]
 public class DeleteFinancialOperationEndpointTests
 {
     private readonly TestServer _testServer;
