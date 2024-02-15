@@ -37,7 +37,7 @@ internal class BaseBehavior<TBaseModel> : IBaseBehavior<TBaseModel> where TBaseM
         return Task.CompletedTask;
     }
 
-    //UnitOfWork SaveChanges is declared here instead of in DataAccess layer.
+    // UnitOfWork SaveChanges is declared here instead of in DataAccess layer.
     public virtual async Task SaveChangesAsync(CancellationToken cancellationToken) => 
         await _dbContext.SaveChangesAsync(cancellationToken);
 }
