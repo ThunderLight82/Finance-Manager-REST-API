@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinanceManagerAPI.Application;
 
+// UnitOfWork is declared here instead of in DataAccess layer or Repos.
 internal class BaseBehavior<TBaseModel> : IBaseBehavior<TBaseModel> where TBaseModel : BaseModel
 {
     private readonly FinanceAPIDbContext _dbContext;
@@ -36,8 +37,7 @@ internal class BaseBehavior<TBaseModel> : IBaseBehavior<TBaseModel> where TBaseM
         
         return Task.CompletedTask;
     }
-
-    // UnitOfWork SaveChanges is declared here instead of in DataAccess layer.
+    
     public virtual async Task SaveChangesAsync(CancellationToken cancellationToken) => 
         await _dbContext.SaveChangesAsync(cancellationToken);
 }
