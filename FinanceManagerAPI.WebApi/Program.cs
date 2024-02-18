@@ -13,7 +13,7 @@ public abstract class Program
         Host.CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.UseStartup<Startup>(); 
+            webBuilder.UseStartup<Startup>();
         })
         .UseSerilog((hostingContext, loggerConfiguration) =>
         {
