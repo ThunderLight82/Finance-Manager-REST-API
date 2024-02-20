@@ -2,7 +2,7 @@
 
 This project was designed to assist users in efficiently managing their finances in everyday life. With features like daily and date periodical reports, it offers insights into income, expenses, and a list of financial operations.
 
-Compact and self-contained, the Web API provides CRUD operations and incorporates modern design paradigms such as Clean Architecture, Minimal API, REST API, and CQRS.
+Compact and self-contained, this RESTful API provides CRUD operations and incorporates modern design paradigms such as Clean Architecture, Minimal API and CQRS.
 
 ## Tech Stack
 
