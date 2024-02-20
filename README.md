@@ -1,8 +1,8 @@
 # "Finance Manager" Project
 
-This project was created and  designed to help users manage their finances efficiently from everyday life. With features like daily and date periodical reports, it provides insights into income, expenses, and financial operations.
+This project was designed to assist users in efficiently managing their finances in everyday life. With features like daily and date periodical reports, it offers insights into income, expenses, and a list of financial operations.
 
-Compact self-finance Web API, that features CRUD operations and implements modern design paradigms such as Clean Architecture, Minimal API, REST API, and CQRS.
+Compact and self-contained, the Web API provides CRUD operations and incorporates modern design paradigms such as Clean Architecture, Minimal API, REST API, and CQRS.
 
 ## Tech Stack
 
