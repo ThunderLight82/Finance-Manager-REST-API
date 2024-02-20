@@ -19,7 +19,7 @@ Compact self-finance Web API, that features CRUD operations and implements moder
 - Moq
 - FluentValidation
 - FluentAssertions
-- 
+
 ## Contacts
 
 **LinkedIn:** [Oleh Pecherskyi](https://www.linkedin.com/in/olehpecherskyi)
