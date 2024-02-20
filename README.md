@@ -22,5 +22,5 @@ Compact self-finance Web API, that features CRUD operations and implements moder
 - 
 ## Contacts
 
-**LinkedIn:** [Oleh Pecherskyi](www.linkedin.com/in/olehpecherskyi)
+**LinkedIn:** [Oleh Pecherskyi](https://www.linkedin.com/in/olehpecherskyi)\n
 **Telegram:** [Thunder_Light](https://t.me/Thunder_Light82)
